@@ -16,7 +16,7 @@ RUN docker-php-ext-install \
     exif
 
 # Enable Apache modules
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
 
 # Set recommended PHP.ini settings
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
