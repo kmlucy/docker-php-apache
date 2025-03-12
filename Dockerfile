@@ -1,15 +1,18 @@
 FROM php:8.3-apache
-LABEL maintainer "Kyle Lucy <kmlucy@gmail.com>"
+LABEL maintainer="Kyle Lucy <kmlucy@gmail.com>"
 
 # Install dependencies for PHP extensions
 RUN apt-get update && apt-get install -y \
     libzip-dev \
     libpng-dev \
+    libjpeg-dev \
     libicu-dev \
+    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install \
+RUN docker-php-ext-configure gd --with-jpeg && \
+	docker-php-ext-install \
     zip \
     gd \
     intl \
